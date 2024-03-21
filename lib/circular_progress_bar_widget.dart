@@ -1,51 +1,8 @@
 import 'dart:math';
 
-import 'package:custom_progress_indicators/animated_cirxular_progress_bar.dart';
+import 'package:custom_progress_indicators/animated_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 
-// class CircularProgressBar extends StatelessWidget {
-//   const CircularProgressBar(
-//       {super.key,
-//       required this.size,
-//       required this.duration,
-//       this.backgroundColor = Colors.grey,
-//       this.progressColor = Colors.blue,
-//       this.strokeWidth = 10,
-//       this.startAngle = -0.5 * pi,
-//       this.endAngle = 1.5 * pi,
-//       this.percentageFontSize = 30,
-//       this.percentageFontColor = Colors.black});
-
-//   final Size size;
-//   final Duration duration;
-//   final Color backgroundColor;
-//   final Color progressColor;
-//   final double strokeWidth;
-//   final double startAngle;
-//   final double endAngle;
-//   final double percentageFontSize;
-//   final Color percentageFontColor;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: SizedBox(
-//         width: size.width,
-//         height: size.height,
-//         child: CustomCircularProgressBar(
-//           duration: duration,
-//           progressColor: progressColor,
-//           endAngle: endAngle,
-//           startAngle: startAngle,
-//           strokeWidth: strokeWidth,
-//           backgroundColor: backgroundColor,
-//           percentageFontColor: percentageFontColor,
-//           percentageFontSize: percentageFontSize,
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class CircularProgressBar extends StatefulWidget {
   const CircularProgressBar(
