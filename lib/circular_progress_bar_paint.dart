@@ -7,7 +7,7 @@ class CircularProgressBarPainter extends CustomPainter {
   final double strokeWidth;
   final double startAngle;
   final double endAngle;
-  final Size size;
+  
 
   const CircularProgressBarPainter({
     required this.progress,
@@ -16,7 +16,7 @@ class CircularProgressBarPainter extends CustomPainter {
     required this.strokeWidth,
     required this.startAngle,
     required this.endAngle,
-    required this.size
+    
   });
 
   @override
@@ -37,6 +37,7 @@ class CircularProgressBarPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
 
+    
     double centerWidth = width / 2;
     double centerHeight = height / 2;
 

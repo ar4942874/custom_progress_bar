@@ -7,14 +7,14 @@ class CustomCircularProgressBar extends StatefulWidget {
   const CustomCircularProgressBar(
       {Key? key,
       required this.duration,
-      required this.size,
-      this.backgroundColor = Colors.grey,
-      this.progressColor = Colors.blue,
-      this.strokeWidth = 10,
-      this.startAngle = -0.5 * pi,
-      this.endAngle = 1.5 * pi,
-      this.percentageFontSize = 30,
-      this.percentageFontColor = Colors.black})
+      required this.backgroundColor,
+      required this.progressColor,
+      required this.strokeWidth,
+      required this.startAngle,
+      required this.endAngle,
+      required this.percentageFontSize,
+      this.onTap,
+      required this.percentageFontColor})
       : super(key: key);
 
   final Duration duration;
@@ -25,7 +25,7 @@ class CustomCircularProgressBar extends StatefulWidget {
   final double endAngle;
   final double percentageFontSize;
   final Color percentageFontColor;
-  final Size size;
+  final VoidCallback? onTap;
 
   @override
   CustomCircularProgressBarState createState() =>
@@ -60,29 +60,33 @@ class CustomCircularProgressBarState extends State<CustomCircularProgressBar>
     super.dispose();
   }
 
-  void runAnimation() {
+  void doubleTap() {
+    _animationController.stop();
+  }
+
+  void onTap() {
     _animationController.forward();
   }
 
   @override
   Widget build(BuildContext context) {
+    int percentage = ((_progressAnimation.value * 100).toInt());
+
     return GestureDetector(
-      onTap: () {
-        runAnimation();
-      },
+      onTap: widget.onTap ?? onTap,
+      onDoubleTap: doubleTap,
       child: CustomPaint(
-        size: widget.size,
         painter: CircularProgressBarPainter(
-            progress: _progressAnimation.value,
-            backgroundColor: widget.backgroundColor,
-            progressColor: widget.progressColor,
-            strokeWidth: widget.strokeWidth,
-            startAngle: widget.startAngle,
-            endAngle: widget.endAngle,
-            size: widget.size),
+          progress: _progressAnimation.value,
+          backgroundColor: widget.backgroundColor,
+          progressColor: widget.progressColor,
+          strokeWidth: widget.strokeWidth,
+          startAngle: widget.startAngle,
+          endAngle: widget.endAngle,
+        ),
         child: Center(
           child: Text(
-            '${(_progressAnimation.value * 100).toInt()}%',
+            '$percentage%',
             style: TextStyle(
               color: widget.percentageFontColor,
               fontSize: widget.percentageFontSize,

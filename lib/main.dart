@@ -20,7 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: CircularProgressBar(),
+      body: CircularProgressBar(
+        size: Size(200, 200),
+        duration: Duration(seconds: 2),
+        percentageFontSize: 30,
+        progressColor: Color.fromARGB(255, 225, 220, 220),
+      ),
     );
   }
 }
