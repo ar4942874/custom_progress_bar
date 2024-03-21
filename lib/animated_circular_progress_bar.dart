@@ -4,21 +4,20 @@ import 'package:custom_progress_indicators/circular_progress_bar_paint.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedCircularProgressBar extends AnimatedWidget {
-  const AnimatedCircularProgressBar({
-    
-    Key? key,
-    required this.size,
-    required this.progressColor,
-    required this.strokeWidth,
-    required this.startAngle,
-    required this.endAngle,
-    required this.percentageFontSize,
-    required this.percentageFontColor,
-    required this.animationController,
-    required this.duration,
-    required this.backgroundColor,
-    this.onTap
-  }) : super(key: key, listenable: animationController);
+  const AnimatedCircularProgressBar(
+      {Key? key,
+      required this.size,
+      required this.progressColor,
+      required this.strokeWidth,
+      required this.startAngle,
+      required this.endAngle,
+      required this.percentageFontSize,
+      required this.percentageFontColor,
+      required this.animationController,
+      required this.duration,
+      required this.backgroundColor,
+      this.onTap})
+      : super(key: key, listenable: animationController);
 
   final Size size;
   final Duration duration;
@@ -44,32 +43,31 @@ class AnimatedCircularProgressBar extends AnimatedWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: GestureDetector(
-      onTap: onTap??startAnimationOnTap,
-      child: CustomPaint(
-        painter: CircularProgressBarPainter(
-          progress: animation.value,
-          backgroundColor: backgroundColor,
-          progressColor: progressColor,
-          strokeWidth: strokeWidth,
-          startAngle: startAngle,
-          endAngle: endAngle,
-        ),
-        child: Center(
-          child: Text(
-            '$getPercentage%',
-            style: TextStyle(
-              color: percentageFontColor,
-              fontSize: percentageFontSize,
-              fontWeight: FontWeight.bold,
+          width: size.width,
+          height: size.height,
+          child: GestureDetector(
+            onTap: onTap,
+            child: CustomPaint(
+              painter: CircularProgressBarPainter(
+                progress: animation.value,
+                backgroundColor: backgroundColor,
+                progressColor: progressColor,
+                strokeWidth: strokeWidth,
+                startAngle: startAngle,
+                endAngle: endAngle,
+              ),
+              child: Center(
+                child: Text(
+                  '$getPercentage%',
+                  style: TextStyle(
+                    color: percentageFontColor,
+                    fontSize: percentageFontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-        )
-      ),
+          )),
     );
   }
 }

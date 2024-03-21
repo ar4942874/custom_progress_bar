@@ -3,21 +3,19 @@ import 'dart:math';
 import 'package:custom_progress_indicators/animated_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 
-
 class CircularProgressBar extends StatefulWidget {
-  const CircularProgressBar(
-      {super.key,
-      required this.size,
-      required this.duration,
-      this.backgroundColor = Colors.grey,
-      this.progressColor = Colors.blue,
-      this.strokeWidth = 10,
-      this.startAngle = -0.5 * pi,
-      this.endAngle = 1.5 * pi,
-      this.percentageFontSize = 30,
-      this.percentageFontColor = Colors.black,
-      this.onTap
-      });
+  const CircularProgressBar({
+    super.key,
+    required this.size,
+    required this.duration,
+    this.backgroundColor = Colors.grey,
+    this.progressColor = Colors.blue,
+    this.strokeWidth = 10,
+    this.startAngle = -0.5 * pi,
+    this.endAngle = 1.5 * pi,
+    this.percentageFontSize = 30,
+    this.percentageFontColor = Colors.black,
+  });
 
   final Size size;
   final Duration duration;
@@ -28,7 +26,6 @@ class CircularProgressBar extends StatefulWidget {
   final double endAngle;
   final double percentageFontSize;
   final Color percentageFontColor;
-  final VoidCallback? onTap;
 
   @override
   State<CircularProgressBar> createState() => _CircularProogressBarState();
@@ -60,6 +57,9 @@ class _CircularProogressBarState extends State<CircularProgressBar>
     super.dispose();
   }
 
+  void onTap() {
+    _animationController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _CircularProogressBarState extends State<CircularProgressBar>
         startAngle: widget.startAngle,
         endAngle: widget.endAngle,
         percentageFontSize: widget.percentageFontSize,
-        onTap: widget.onTap,
+        onTap: onTap,
         percentageFontColor: widget.percentageFontColor);
   }
 }
