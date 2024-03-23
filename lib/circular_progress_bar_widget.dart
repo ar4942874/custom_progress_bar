@@ -18,7 +18,7 @@ class CircularProgressBar extends StatefulWidget {
       this.percentageFontSize = 30,
       this.percentageFontColor = Colors.black,
       this.progressValue = 100,
-      required this.onTap,
+      this.onTap,
       required this.animationType})
       : super(key: key);
 
@@ -33,7 +33,7 @@ class CircularProgressBar extends StatefulWidget {
   final Color percentageFontColor;
   final double? progressValue;
   final Animate animationType;
-  final AnimationCallback onTap;
+  final AnimationCallback? onTap;
 
   @override
   State<CircularProgressBar> createState() => _CircularProgressBarState();
@@ -56,9 +56,24 @@ class _CircularProgressBarState extends State<CircularProgressBar>
     super.dispose();
   }
 
+  void startAnimation() {
+    switch (widget.animationType) {
+      case Animate.forward:
+        _animationController.forward();
+        break;
+      case Animate.reverse:
+        _animationController.reverse();
+        break;
+      case Animate.stop:
+        _animationController.stop();
+        break;
+      case Animate.repeat:
+        _animationController.repeat();
+    }
+  }
 
   void handleTap() {
-    widget.onTap(widget.animationType);
+    widget.onTap!(widget.animationType);
     switch (widget.animationType) {
       case Animate.forward:
         _animationController.forward();
@@ -77,7 +92,7 @@ class _CircularProgressBarState extends State<CircularProgressBar>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: handleTap,
+      onTap: widget.onTap != null ? handleTap : startAnimation,
       child: AnimatedCircularProgressBar(
         backgroundColor: widget.backgroundColor,
         animationController: _animationController,
