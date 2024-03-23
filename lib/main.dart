@@ -1,4 +1,4 @@
-import 'package:custom_progress_indicators/circular_progress_bar_widget.dart';
+import 'package:custom_progress_indicators/final_test.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +6,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +15,10 @@ class MainApp extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: CircularProgressBar(
-        size: Size(200, 200),
-        duration: Duration(seconds: 2),
-        percentageFontSize: 30,
-        progressColor: Color.fromARGB(255, 225, 220, 220),
-      ),
-    );
+    return const Scaffold(body: FinalTest());
   }
 }

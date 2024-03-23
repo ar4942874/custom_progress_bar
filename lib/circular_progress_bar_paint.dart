@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CircularProgressBarPainter extends CustomPainter {
@@ -7,7 +9,6 @@ class CircularProgressBarPainter extends CustomPainter {
   final double strokeWidth;
   final double startAngle;
   final double endAngle;
-  
 
   const CircularProgressBarPainter({
     required this.progress,
@@ -16,35 +17,29 @@ class CircularProgressBarPainter extends CustomPainter {
     required this.strokeWidth,
     required this.startAngle,
     required this.endAngle,
-    
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-
-    //Extracting width,height from size
-    final Size(:width,:height)=size;
-
-    //Background Paint
+    // Background Paint
     Paint backgroundPaint = Paint()
       ..color = backgroundColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
 
-    //Progress Bar Paint
+    // Progress Bar Paint
     Paint progressBarPaint = Paint()
       ..color = progressColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
 
-    
-    double centerWidth = width / 2;
-    double centerHeight = height / 2;
+    double centerWidth = size.width / 2;
+    double centerHeight = size.height / 2;
 
     Offset centerOffset = Offset(centerWidth, centerHeight);
-    double radius = (centerWidth) - (strokeWidth / 2);
+    double radius = min(centerWidth, centerHeight) - (strokeWidth / 2);
 
-    //Drawing Arc for Circle Background
+    // Drawing Arc for Circle Background
     canvas.drawArc(
       Rect.fromCircle(center: centerOffset, radius: radius),
       startAngle,
@@ -53,7 +48,7 @@ class CircularProgressBarPainter extends CustomPainter {
       backgroundPaint,
     );
 
-    //Drawing Arc for progress bar
+    // Drawing Arc for progress bar
     double sweepAngle = progress * (endAngle - startAngle);
     canvas.drawArc(
       Rect.fromCircle(center: centerOffset, radius: radius),
