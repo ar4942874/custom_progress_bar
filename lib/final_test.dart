@@ -18,17 +18,17 @@ class _FinalTestState extends State<FinalTest> {
       duration: const Duration(seconds: 2),
       percentageFontSize: 30,
       animationType: animate,
-      // onTap: (animationType) {
-      //   if (animationType == Animate.forward) {
-      //     setState(() {
-      //       animate = Animate.stop;
-      //     });
-      //   } else if (animationType == Animate.stop) {
-      //     setState(() {
-      //       animate = Animate.forward;
-      //     });
-      //   }
-      // },
+      onTap: (animationType) {
+        if (animationType == Animate.forward) {
+          setState(() {
+            animate = Animate.stop;
+          });
+        } else if (animationType == Animate.stop) {
+          setState(() {
+            animate = Animate.forward;
+          });
+        }
+      },
     );
   }
 }
